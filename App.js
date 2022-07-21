@@ -7,24 +7,44 @@
  */
 
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Button, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ContactScreen from './screens/contactScreen';
 import ChatScreen from './screens/chatScreen';
+import ContactHeader from './components/contactScreen/contactHeader';
+import ChatHeader from './components/chatScreen/chatHeader';
+import { white } from 'react-native-paper/lib/typescript/styles/colors';
 const App=()=>{
   const Tab=createMaterialBottomTabNavigator();
+  const Stack= createNativeStackNavigator();
   return (
     <NavigationContainer >
-      <Tab.Navigator barStyle={{backgroundColor:'blue'}} style={styles.container}>
-        <Tab.Screen name="contactScreen" component={ContactScreen} options={{
-          tabBarIcon:({color})=>{
-            return <FontAwesome5 name="soap" size={30} color={color} />
-          },
-        }}/>
-        <Tab.Screen name="chatScreen" component={ChatScreen} />
-        </Tab.Navigator>
+      <Stack.Navigator  style={styles.container}>
+        <Stack.Screen 
+        name="contactScreen"
+        component={ContactScreen}
+        options={{ headerTitle: ContactHeader,headerStyle: {
+          backgroundColor: '#3777F0',
+        }}}/>
+        <Stack.Screen
+         name="chatScreen"
+        component={ChatScreen}
+        options={{ headerTitle:(props)=><ChatHeader {...props}/>,headerStyle: {
+          backgroundColor: '#3777F0',
+          padding:0,
+        },headerTintColor:'white',
+        title:'Username',
+        // headerLeft: () => (
+        //   <Button
+        //     onPress={() => alert('This is a button!')}
+        //     title="Info"
+        //     color="#fff"
+        //   />),
+        }} />
+        </Stack.Navigator>
       </NavigationContainer>
   )
 }

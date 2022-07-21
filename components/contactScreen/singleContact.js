@@ -1,7 +1,7 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import React from 'react';
 
-export default function SingleContact() {
+export default function SingleContact({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.page}>
@@ -12,7 +12,7 @@ export default function SingleContact() {
         <View style={styles.badge}>
           <Text style={styles.badgeText}>1</Text>
         </View>
-        <View style={styles.allInfo}>
+        <Pressable onPress={()=>navigation.navigate('chatScreen')} style={styles.allInfo}>
           <View style={styles.info}>
             <Text style={styles.name}>Game</Text>
             <Text style={styles.time}>11:11 AM</Text>
@@ -21,7 +21,7 @@ export default function SingleContact() {
           <Text style={styles.description} numberOfLines={1}>
             this is the last msg
           </Text>
-        </View>
+        </Pressable>
       </View>
       {/* <View style={styles.horizontal} /> */}
     </View>

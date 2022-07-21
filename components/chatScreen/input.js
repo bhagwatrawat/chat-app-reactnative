@@ -30,6 +30,7 @@ export default function Input() {
           />
           <TextInput
             style={styles.inputBar}
+            placeholderTextColor="grey"
             value={text}
             onChangeText={newText => setText(newText)}
             placeholder="Message"
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
   },
   inputBar:{
     flex: 1,
+    color:'black',
   },
   icon:{
     marginRight:5,
